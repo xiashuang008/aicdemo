@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+*.aux
+*.log
+*.out
+*.toc
+*.xdv
+brief-check.png

@@ -1,0 +1,438 @@
+{
+  "source": "SEC EDGAR XBRL company facts API",
+  "generated_at": "2026-10-26T03:13:12.177043+00:00",
+  "companies": [
+    {
+      "name": "苹果",
+      "entity_name": "Apple Inc.",
+      "cik": "0000320193",
+      "period": {
+        "start": "2024-09-29",
+        "end": "2025-09-27"
+      },
+      "metrics": {
+        "revenue_usd": 416161000000,
+        "previous_year_revenue_usd": 391035000000,
+        "revenue_growth_pct": 6.425511782832749,
+        "gross_profit_usd": 195201000000,
+        "gross_margin_pct": 46.90516410716045,
+        "operating_income_usd": 133050000000,
+        "operating_margin_pct": 31.970799762591884,
+        "net_income_usd": 112010000000,
+        "net_margin_pct": 26.91506412181824
+      },
+      "sources": {
+        "company_facts_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+        "revenue": {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2024-09-29",
+          "end": "2025-09-27",
+          "value_usd": 416161000000,
+          "accession": "0000320193-25-000079",
+          "filed": "2025-10-31"
+        },
+        "previous_year_revenue": {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2023-10-01",
+          "end": "2024-09-28",
+          "value_usd": 391035000000,
+          "accession": "0000320193-25-000079",
+          "filed": "2025-10-31"
+        },
+        "gross_profit": {
+          "derivation": "reported",
+          "facts": [
+            {
+              "tag": "GrossProfit",
+              "start": "2024-09-29",
+              "end": "2025-09-27",
+              "value_usd": 195201000000,
+              "accession": "0000320193-25-000079",
+              "filed": "2025-10-31"
+            }
+          ]
+        },
+        "operating_income": {
+          "tag": "OperatingIncomeLoss",
+          "start": "2024-09-29",
+          "end": "2025-09-27",
+          "value_usd": 133050000000,
+          "accession": "0000320193-25-000079",
+          "filed": "2025-10-31"
+        },
+        "net_income": {
+          "tag": "NetIncomeLoss",
+          "start": "2024-09-29",
+          "end": "2025-09-27",
+          "value_usd": 112010000000,
+          "accession": "0000320193-25-000079",
+          "filed": "2025-10-31"
+        }
+      }
+    },
+    {
+      "name": "微软",
+      "entity_name": "Microsoft Corporation",
+      "cik": "0000789019",
+      "period": {
+        "start": "2025-07-01",
+        "end": "2026-06-30"
+      },
+      "metrics": {
+        "revenue_usd": 331839000000,
+        "previous_year_revenue_usd": 281724000000,
+        "revenue_growth_pct": 17.788686799846666,
+        "gross_profit_usd": 225465000000,
+        "gross_margin_pct": 67.94409337058032,
+        "operating_income_usd": 155237000000,
+        "operating_margin_pct": 46.780818408927225,
+        "net_income_usd": 133749000000,
+        "net_margin_pct": 40.30538905915218
+      },
+      "sources": {
+        "company_facts_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
+        "revenue": {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2025-07-01",
+          "end": "2026-06-30",
+          "value_usd": 331839000000,
+          "accession": "0001193125-26-323660",
+          "filed": "2026-07-29"
+        },
+        "previous_year_revenue": {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2024-07-01",
+          "end": "2025-06-30",
+          "value_usd": 281724000000,
+          "accession": "0001193125-26-323660",
+          "filed": "2026-07-29"
+        },
+        "gross_profit": {
+          "derivation": "reported",
+          "facts": [
+            {
+              "tag": "GrossProfit",
+              "start": "2025-07-01",
+              "end": "2026-06-30",
+              "value_usd": 225465000000,
+              "accession": "0001193125-26-323660",
+              "filed": "2026-07-29"
+            }
+          ]
+        },
+        "operating_income": {
+          "tag": "OperatingIncomeLoss",
+          "start": "2025-07-01",
+          "end": "2026-06-30",
+          "value_usd": 155237000000,
+          "accession": "0001193125-26-323660",
+          "filed": "2026-07-29"
+        },
+        "net_income": {
+          "tag": "NetIncomeLoss",
+          "start": "2025-07-01",
+          "end": "2026-06-30",
+          "value_usd": 133749000000,
+          "accession": "0001193125-26-323660",
+          "filed": "2026-07-29"
+        }
+      }
+    },
+    {
+      "name": "Alphabet",
+      "entity_name": "Alphabet Inc.",
+      "cik": "0001652044",
+      "period": {
+        "start": "2025-01-01",
+        "end": "2025-12-31"
+      },
+      "metrics": {
+        "revenue_usd": 402836000000,
+        "previous_year_revenue_usd": 350018000000,
+        "revenue_growth_pct": 15.090081081544371,
+        "gross_profit_usd": 240301000000,
+        "gross_margin_pct": 59.65231508603998,
+        "operating_income_usd": 129039000000,
+        "operating_margin_pct": 32.032638592380025,
+        "net_income_usd": 132170000000,
+        "net_margin_pct": 32.80987796522654
+      },
+      "sources": {
+        "company_facts_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json",
+        "revenue": {
+          "tag": "Revenues",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "value_usd": 402836000000,
+          "accession": "0001652044-26-000018",
+          "filed": "2026-02-05"
+        },
+        "previous_year_revenue": {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "value_usd": 350018000000,
+          "accession": "0001652044-25-000014",
+          "filed": "2025-02-05"
+        },
+        "gross_profit": {
+          "derivation": "revenue_minus_cost",
+          "facts": [
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "value_usd": 402836000000,
+              "accession": "0001652044-26-000018",
+              "filed": "2026-02-05"
+            },
+            {
+              "tag": "CostOfRevenue",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "value_usd": 162535000000,
+              "accession": "0001652044-26-000018",
+              "filed": "2026-02-05"
+            }
+          ]
+        },
+        "operating_income": {
+          "tag": "OperatingIncomeLoss",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "value_usd": 129039000000,
+          "accession": "0001652044-26-000018",
+          "filed": "2026-02-05"
+        },
+        "net_income": {
+          "tag": "NetIncomeLoss",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "value_usd": 132170000000,
+          "accession": "0001652044-26-000018",
+          "filed": "2026-02-05"
+        }
+      }
+    },
+    {
+      "name": "亚马逊",
+      "entity_name": "AMAZON COM INC",
+      "cik": "0001018724",
+      "period": {
+        "start": "2025-01-01",
+        "end": "2025-12-31"
+      },
+      "metrics": {
+        "revenue_usd": 716924000000,
+        "previous_year_revenue_usd": 637959000000,
+        "revenue_growth_pct": 12.377754683294695,
+        "gross_profit_usd": 360510000000,
+        "gross_margin_pct": 50.28566486824266,
+        "operating_income_usd": 79975000000,
+        "operating_margin_pct": 11.155296795755199,
+        "net_income_usd": 77670000000,
+        "net_margin_pct": 10.83378433418326
+      },
+      "sources": {
+        "company_facts_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json",
+        "revenue": {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "value_usd": 716924000000,
+          "accession": "0001018724-26-000004",
+          "filed": "2026-02-06"
+        },
+        "previous_year_revenue": {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "value_usd": 637959000000,
+          "accession": "0001018724-26-000004",
+          "filed": "2026-02-06"
+        },
+        "gross_profit": {
+          "derivation": "revenue_minus_cost",
+          "facts": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "value_usd": 716924000000,
+              "accession": "0001018724-26-000004",
+              "filed": "2026-02-06"
+            },
+            {
+              "tag": "CostOfGoodsAndServicesSold",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "value_usd": 356414000000,
+              "accession": "0001018724-26-000004",
+              "filed": "2026-02-06"
+            }
+          ]
+        },
+        "operating_income": {
+          "tag": "OperatingIncomeLoss",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "value_usd": 79975000000,
+          "accession": "0001018724-26-000004",
+          "filed": "2026-02-06"
+        },
+        "net_income": {
+          "tag": "NetIncomeLoss",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "value_usd": 77670000000,
+          "accession": "0001018724-26-000004",
+          "filed": "2026-02-06"
+        }
+      }
+    },
+    {
+      "name": "Meta",
+      "entity_name": "Meta Platforms, Inc.",
+      "cik": "0001326801",
+      "period": {
+        "start": "2025-01-01",
+        "end": "2025-12-31"
+      },
+      "metrics": {
+        "revenue_usd": 200966000000,
+        "previous_year_revenue_usd": 164501000000,
+        "revenue_growth_pct": 22.167038498246217,
+        "gross_profit_usd": 164791000000,
+        "gross_margin_pct": 81.9994426917986,
+        "operating_income_usd": 83276000000,
+        "operating_margin_pct": 41.437855159579236,
+        "net_income_usd": 60458000000,
+        "net_margin_pct": 30.08369574952977
+      },
+      "sources": {
+        "company_facts_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001326801.json",
+        "revenue": {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "value_usd": 200966000000,
+          "accession": "0001628280-26-003942",
+          "filed": "2026-01-29"
+        },
+        "previous_year_revenue": {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "value_usd": 164501000000,
+          "accession": "0001628280-26-003942",
+          "filed": "2026-01-29"
+        },
+        "gross_profit": {
+          "derivation": "revenue_minus_cost",
+          "facts": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "value_usd": 200966000000,
+              "accession": "0001628280-26-003942",
+              "filed": "2026-01-29"
+            },
+            {
+              "tag": "CostOfRevenue",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "value_usd": 36175000000,
+              "accession": "0001628280-26-003942",
+              "filed": "2026-01-29"
+            }
+          ]
+        },
+        "operating_income": {
+          "tag": "OperatingIncomeLoss",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "value_usd": 83276000000,
+          "accession": "0001628280-26-003942",
+          "filed": "2026-01-29"
+        },
+        "net_income": {
+          "tag": "NetIncomeLoss",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "value_usd": 60458000000,
+          "accession": "0001628280-26-003942",
+          "filed": "2026-01-29"
+        }
+      }
+    },
+    {
+      "name": "英伟达",
+      "entity_name": "NVIDIA CORP",
+      "cik": "0001045810",
+      "period": {
+        "start": "2025-01-27",
+        "end": "2026-01-25"
+      },
+      "metrics": {
+        "revenue_usd": 215938000000,
+        "previous_year_revenue_usd": 130497000000,
+        "revenue_growth_pct": 65.47353579009479,
+        "gross_profit_usd": 153463000000,
+        "gross_margin_pct": 71.06808435754708,
+        "operating_income_usd": 130387000000,
+        "operating_margin_pct": 60.38168363141272,
+        "net_income_usd": 120067000000,
+        "net_margin_pct": 55.60253406070261
+      },
+      "sources": {
+        "company_facts_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json",
+        "revenue": {
+          "tag": "Revenues",
+          "start": "2025-01-27",
+          "end": "2026-01-25",
+          "value_usd": 215938000000,
+          "accession": "0001045810-26-000021",
+          "filed": "2026-02-25"
+        },
+        "previous_year_revenue": {
+          "tag": "Revenues",
+          "start": "2024-01-29",
+          "end": "2025-01-26",
+          "value_usd": 130497000000,
+          "accession": "0001045810-26-000021",
+          "filed": "2026-02-25"
+        },
+        "gross_profit": {
+          "derivation": "reported",
+          "facts": [
+            {
+              "tag": "GrossProfit",
+              "start": "2025-01-27",
+              "end": "2026-01-25",
+              "value_usd": 153463000000,
+              "accession": "0001045810-26-000021",
+              "filed": "2026-02-25"
+            }
+          ]
+        },
+        "operating_income": {
+          "tag": "OperatingIncomeLoss",
+          "start": "2025-01-27",
+          "end": "2026-01-25",
+          "value_usd": 130387000000,
+          "accession": "0001045810-26-000021",
+          "filed": "2026-02-25"
+        },
+        "net_income": {
+          "tag": "NetIncomeLoss",
+          "start": "2025-01-27",
+          "end": "2026-01-25",
+          "value_usd": 120067000000,
+          "accession": "0001045810-26-000021",
+          "filed": "2026-02-25"
+        }
+      }
+    }
+  ]
+}

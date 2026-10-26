@@ -1,0 +1,54 @@
+\documentclass[10pt,a4paper]{ctexart}
+\usepackage[margin=1.35cm]{geometry}
+\usepackage{booktabs,array,tabularx}
+\usepackage[table]{xcolor}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\renewcommand{\arraystretch}{1.18}
+\pagestyle{empty}
+\definecolor{navy}{HTML}{17365D}
+\definecolor{paleblue}{HTML}{EAF1F8}
+\newcommand{\sectiontitle}[1]{{\color{navy}\bfseries #1}\par\vspace{-2pt}}
+
+\begin{document}
+{\centering
+  {\zihao{3}\bfseries\color{navy} 六家大型科技公司财务对比简报\par}
+  \vspace{3pt}
+  {\small 最新披露财年｜金额单位：十亿美元；比率单位：\%｜均保留一位小数\par}
+}
+\vspace{4pt}
+
+\sectiontitle{核心对比}
+{\small
+\begin{tabularx}{\textwidth}{>{\bfseries}l c *{5}{>{\centering\arraybackslash}X}}
+\rowcolor{navy}
+\color{white}\normalfont 公司 & \color{white}财年截止日 & \color{white}营收 & \color{white}营收增长 & \color{white}毛利率 & \color{white}营业利润率 & \color{white}净利率 \\
+苹果 & 2025-09-27 & 416.2 & 6.4\% & 46.9\% & 32.0\% & 26.9\% \\
+\rowcolor{paleblue}
+微软 & 2026-06-30 & 331.8 & 17.8\% & 67.9\% & 46.8\% & 40.3\% \\
+Alphabet & 2025-12-31 & 402.8 & 15.1\% & 59.7\% & 32.0\% & 32.8\% \\
+\rowcolor{paleblue}
+亚马逊 & 2025-12-31 & 716.9 & 12.4\% & 50.3\% & 11.2\% & 10.8\% \\
+Meta & 2025-12-31 & 201.0 & 22.2\% & 82.0\% & 41.4\% & 30.1\% \\
+\rowcolor{paleblue}
+英伟达 & 2026-01-25 & 215.9 & 65.5\% & 71.1\% & 60.4\% & 55.6\% \\
+\end{tabularx}
+}
+\vspace{4pt}
+
+\sectiontitle{要点}
+\begin{itemize}
+  \setlength{\itemsep}{2pt}
+  \item \textbf{规模与增长：}亚马逊营收最高（716.9），其后为苹果（416.2）和 Alphabet（402.8）；英伟达增长最快（65.5\%），Meta（22.2\%）和微软（17.8\%）随后，苹果增速最低（6.4\%）。
+  \item \textbf{利润率：}英伟达营业利润率（60.4\%）与净利率（55.6\%）均居首；Meta 毛利率最高（82.0\%），微软营业利润率（46.8\%）居次。亚马逊规模最大，但营业与净利率均为六家最低。
+  \item \textbf{商业模式差异（由利润率结构观察）：}Meta、微软、Alphabet 和英伟达呈较高毛利率，苹果与亚马逊相对较低；英伟达兼具高增长和高利润率，而亚马逊呈“大规模、低营业利润率”特征。高营收不必然转化为高盈利，增长、毛利和营业效率应结合判断。
+\end{itemize}
+
+\sectiontitle{口径与限制}
+{\small
+各公司财年并不一致：Alphabet、亚马逊和 Meta 截至 2025-12-31，苹果截至 2025-09-27，英伟达截至 2026-01-25，微软截至 2026-06-30，因此横向比较并非同一自然期间。净利率未剔除潜在一次性损益，不宜单独视为持续经营盈利能力，宜与营业利润率共同观察。毛利存在直接披露与“营收减成本”推导两种口径，比较时亦需注意。\par
+\vspace{3pt}
+\textbf{数据来源：}财务数据来源仅为 \textbf{SEC EDGAR XBRL company facts API}，取自 \texttt{comparison.json}；未使用外部数据。六项 10-K 营收核对全部通过（6/6，数值、单位和期间一致），见 \texttt{verification.md}；10-K 仅作独立核对，不替代上述 API 数据源。
+}
+
+\end{document}
