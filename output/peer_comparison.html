@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="苹果、微软、Alphabet、亚马逊和英伟达的年度财务同业对比，支持按净利率排序。">
+  <title>五家公司同业对比｜净利率与财年期间</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f3f2ed;
+      --surface: #ffffff;
+      --ink: #172725;
+      --muted: #66736f;
+      --line: #d8ddd8;
+      --soft: #e9ece7;
+      --accent: #0b6e64;
+      --accent-dark: #084f48;
+      --accent-soft: #dcece7;
+      --amber: #b9752c;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      font-variant-numeric: tabular-nums;
+    }
+
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    a { color: var(--accent-dark); text-underline-offset: 3px; }
+    a:hover { color: var(--accent); }
+
+    button:focus-visible, a:focus-visible {
+      outline: 3px solid var(--amber);
+      outline-offset: 4px;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 64px));
+      margin: 0 auto;
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .topline span:last-child { letter-spacing: .04em; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 64px;
+      align-items: end;
+      padding: 56px 0 42px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .1em;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(36px, 5vw, 62px);
+      line-height: 1.12;
+      letter-spacing: -.045em;
+      font-weight: 750;
+    }
+
+    .intro {
+      max-width: 670px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .leader {
+      padding: 4px 0 4px 28px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .leader-label {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .leader-value {
+      display: block;
+      margin: 2px 0 -4px;
+      color: var(--accent-dark);
+      font-size: 64px;
+      line-height: 1.2;
+      letter-spacing: -.05em;
+      font-weight: 750;
+    }
+
+    .leader-value small { font-size: 28px; letter-spacing: 0; }
+    .leader p { margin: 8px 0 0; font-size: 14px; }
+
+    .metadata {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.6fr 1.2fr;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .meta-item { padding: 16px 20px 17px 0; }
+    .meta-item + .meta-item { padding-left: 20px; border-left: 1px solid var(--line); }
+    .meta-item span { display: block; color: var(--muted); font-size: 11px; letter-spacing: .08em; }
+    .meta-item strong { display: block; margin-top: 2px; font-size: 13px; font-weight: 650; }
+
+    main { padding: 42px 0 0; }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 32px 36px 36px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 26px;
+    }
+
+    .section-index {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+
+    h2 { margin: 0; font-size: 25px; line-height: 1.3; letter-spacing: -.02em; }
+    .section-head p { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+
+    .sort-button {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 44px;
+      padding: 9px 14px;
+      border: 1px solid var(--accent);
+      border-radius: 3px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .sort-button:hover { background: #cfe4dd; }
+    .sort-icon { width: 14px; font-size: 18px; line-height: 1; text-align: center; }
+
+    .ranking, .axis-row {
+      display: grid;
+      grid-template-columns: 42px minmax(150px, 210px) minmax(180px, 1fr) 72px;
+      column-gap: 20px;
+      align-items: center;
+    }
+
+    .axis-row { margin-bottom: 8px; color: var(--muted); font-size: 11px; }
+    .axis-values { display: flex; justify-content: space-between; }
+    .axis-unit { text-align: right; }
+
+    .ranking-list { list-style: none; margin: 0; padding: 0; }
+    .ranking { padding: 17px 0; border-top: 1px solid var(--soft); }
+    .rank-number { color: #8a948f; font-size: 12px; font-weight: 700; }
+    .company-name { display: block; font-size: 16px; line-height: 1.35; }
+    .fiscal-date { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }
+
+    .bar-track {
+      height: 18px;
+      background: #edf0ec;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      width: var(--bar-width);
+      height: 100%;
+      background: var(--accent);
+      transition: width 240ms ease;
+    }
+
+    .ranking:first-child .bar-fill { background: var(--accent-dark); }
+    .margin-value { text-align: right; font-size: 20px; font-weight: 750; }
+
+    .table-section { margin-top: 42px; }
+    .table-section .section-head { margin-bottom: 20px; }
+    .table-wrap { overflow-x: auto; border-top: 2px solid var(--ink); }
+
+    table { width: 100%; min-width: 900px; border-collapse: collapse; }
+    caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    th, td { padding: 16px 14px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+    th { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .04em; }
+    td { font-size: 14px; }
+    th:first-child, td:first-child { padding-left: 0; text-align: left; }
+    th:nth-child(2), td:nth-child(2) { text-align: left; }
+    th:last-child, td:last-child { padding-right: 0; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: rgba(220, 236, 231, .35); }
+    td.net-margin { color: var(--accent-dark); font-weight: 800; }
+    .table-company { font-weight: 700; }
+
+    .notes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin: 42px 0 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .notes h2 { margin-bottom: 10px; font-size: 15px; letter-spacing: 0; }
+    .notes p { margin: 0; color: var(--muted); font-size: 13px; }
+    .notes p + p { margin-top: 8px; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 20px 0 28px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .error-state {
+      padding: 24px;
+      border: 1px solid #a64b3c;
+      background: #fff4f0;
+      color: #783528;
+    }
+
+    .noscript { margin: 20px 0; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 820px) {
+      .page { width: min(100% - 36px, 1180px); }
+      .hero { grid-template-columns: 1fr; gap: 30px; padding: 40px 0 32px; }
+      .leader { max-width: 300px; }
+      .leader-value { font-size: 52px; }
+      .metadata { grid-template-columns: 1fr 1fr; }
+      .meta-item:nth-child(3) { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+      .meta-item:nth-child(4) { border-top: 1px solid var(--line); }
+      .panel { padding: 26px 22px 28px; }
+      .ranking, .axis-row { grid-template-columns: 32px minmax(120px, 165px) minmax(120px, 1fr) 60px; column-gap: 12px; }
+      .notes { gap: 28px; }
+    }
+
+    @media (max-width: 560px) {
+      .page { width: min(100% - 24px, 1180px); }
+      .topline { align-items: flex-start; font-size: 10px; }
+      .topline span:last-child { text-align: right; }
+      h1 { font-size: 38px; }
+      .intro { font-size: 15px; }
+      .metadata { grid-template-columns: 1fr; }
+      .meta-item { padding: 12px 0; }
+      .meta-item + .meta-item, .meta-item:nth-child(3) { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+      main { padding-top: 28px; }
+      .panel { padding: 22px 16px 24px; }
+      .section-head { align-items: flex-start; flex-direction: column; gap: 16px; }
+      .sort-button { width: 100%; justify-content: space-between; }
+      .axis-row { display: none; }
+      .ranking { grid-template-columns: 28px minmax(0, 1fr) 62px; column-gap: 10px; padding: 16px 0; }
+      .bar-track { grid-column: 2 / 4; grid-row: 2; margin-top: 10px; height: 12px; }
+      .margin-value { grid-column: 3; grid-row: 1; font-size: 18px; }
+      .company-name { font-size: 15px; }
+      .fiscal-date { font-size: 11px; }
+      .notes { grid-template-columns: 1fr; gap: 24px; margin-top: 30px; }
+      footer { flex-direction: column; gap: 6px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="topline">
+        <span>Peer comparison · 05 companies</span>
+        <span>Historical GAAP · Annual</span>
+      </div>
+      <div class="hero">
+        <div>
+          <p class="eyebrow">经营表现 / 盈利能力</p>
+          <h1>五家公司同业对比</h1>
+          <p class="intro">以净利率为排序主线，对照苹果、微软、Alphabet、亚马逊和英伟达的最近完整财年表现。每家公司均明确标注财年截止日，避免把不同期间视为完全同质的数据。</p>
+        </div>
+        <aside class="leader" aria-label="样本最高净利率">
+          <span class="leader-label">样本最高净利率</span>
+          <strong class="leader-value">55.6<small>%</small></strong>
+          <p>英伟达<br>财年截止 2026-01-25</p>
+        </aside>
+      </div>
+      <div class="metadata" aria-label="数据背景">
+        <div class="meta-item"><span>数据性质</span><strong>历史年度 · 非实时行情</strong></div>
+        <div class="meta-item"><span>单位</span><strong>十亿美元 · 百分比</strong></div>
+        <div class="meta-item"><span>数据来源</span><strong>SEC EDGAR XBRL company facts API</strong></div>
+        <div class="meta-item"><span>数据文件生成日</span><strong>2026-10-26</strong></div>
+      </div>
+    </header>
+
+    <noscript><p class="error-state noscript">此网页需要 JavaScript 来生成排序视图，请启用 JavaScript 后重新打开。</p></noscript>
+
+    <main>
+      <section class="panel" aria-labelledby="ranking-title">
+        <div class="section-head">
+          <div>
+            <span class="section-index">01 / NET MARGIN</span>
+            <h2 id="ranking-title">净利率排序</h2>
+            <p>净利率＝净利润÷同期营收。横轴从 0% 开始，范围 0–60%。</p>
+          </div>
+          <button class="sort-button" id="sort-button" type="button" aria-label="当前按净利率从高到低排序，点击切换为从低到高">
+            <span id="sort-label">净利率：高到低</span>
+            <span class="sort-icon" id="sort-icon" aria-hidden="true">↓</span>
+          </button>
+        </div>
+        <div class="axis-row" aria-hidden="true">
+          <span></span><span></span>
+          <div class="axis-values"><span>0%</span><span>20%</span><span>40%</span><span>60%</span></div>
+          <span class="axis-unit">净利率</span>
+        </div>
+        <ol class="ranking-list" id="ranking-list"></ol>
+        <p class="sr-only" id="sort-status" aria-live="polite"></p>
+      </section>
+
+      <section class="table-section" aria-labelledby="detail-title">
+        <div class="section-head">
+          <div>
+            <span class="section-index">02 / FINANCIAL DETAIL</span>
+            <h2 id="detail-title">年度财务明细</h2>
+            <p>表格顺序与上方排序保持一致；营收以十亿美元列示。</p>
+          </div>
+        </div>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="可横向滚动的财务明细表">
+          <table>
+            <caption>五家公司最近完整财年的营收、增长率、利润率及财年截止日</caption>
+            <thead>
+              <tr>
+                <th scope="col">公司</th>
+                <th scope="col">财年截止日</th>
+                <th scope="col">营收<br>（十亿美元）</th>
+                <th scope="col">营收同比</th>
+                <th scope="col">毛利率</th>
+                <th scope="col">经营利润率</th>
+                <th scope="col">净利率</th>
+              </tr>
+            </thead>
+            <tbody id="detail-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="notes" aria-label="指标定义与可比性限制">
+        <div>
+          <h2>口径说明</h2>
+          <p>营收由美元原始值换算为十亿美元；营收同比按相邻完整财年计算。毛利润优先采用同期间披露值，否则以同期间营收减营业成本计算。</p>
+          <p>利润率均以同期营收为分母，金额及比率显示为一位小数。完整原始数值和来源元数据保存在 comparison.json。</p>
+        </div>
+        <div>
+          <h2>比较限制</h2>
+          <p>各公司财年截止日和成本费用分类不完全相同；GAAP 净利润可能受投资损益及一次性税项影响。排序描述本样本的历史年度结果，不构成投资建议。</p>
+          <p>来源：<a href="https://data.sec.gov/" target="_blank" rel="noopener noreferrer">SEC EDGAR XBRL company facts API</a>。10-K 独立核对记录见 verification.md。</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>五家公司：苹果 · 微软 · Alphabet · 亚马逊 · 英伟达</span>
+      <span>数据截至各公司所列财年截止日</span>
+    </footer>
+  </div>
+
+  <script>
+    const companies = [
+      { cik: "0000320193", name: "苹果", fiscalYearEnd: "2025-09-27", revenueUSD: 416161000000, growth: 6.425511782832749, grossMargin: 46.90516410716045, operatingMargin: 31.970799762591884, netMargin: 26.91506412181824 },
+      { cik: "0000789019", name: "微软", fiscalYearEnd: "2026-06-30", revenueUSD: 331839000000, growth: 17.788686799846666, grossMargin: 67.94409337058032, operatingMargin: 46.780818408927225, netMargin: 40.30538905915218 },
+      { cik: "0001652044", name: "Alphabet", fiscalYearEnd: "2025-12-31", revenueUSD: 402836000000, growth: 15.090081081544371, grossMargin: 59.65231508603998, operatingMargin: 32.032638592380025, netMargin: 32.80987796522654 },
+      { cik: "0001018724", name: "亚马逊", fiscalYearEnd: "2025-12-31", revenueUSD: 716924000000, growth: 12.377754683294695, grossMargin: 50.28566486824266, operatingMargin: 11.155296795755199, netMargin: 10.83378433418326 },
+      { cik: "0001045810", name: "英伟达", fiscalYearEnd: "2026-01-25", revenueUSD: 215938000000, growth: 65.47353579009479, grossMargin: 71.06808435754708, operatingMargin: 60.38168363141272, netMargin: 55.60253406070261 }
+    ];
+
+    const numberFormat = new Intl.NumberFormat("zh-CN", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    const sortButton = document.getElementById("sort-button");
+    const sortLabel = document.getElementById("sort-label");
+    const sortIcon = document.getElementById("sort-icon");
+    const sortStatus = document.getElementById("sort-status");
+    const rankingList = document.getElementById("ranking-list");
+    const detailBody = document.getElementById("detail-body");
+    let descending = true;
+
+    function format(value) {
+      return numberFormat.format(value);
+    }
+
+    function companySource(company) {
+      return `https://data.sec.gov/api/xbrl/companyfacts/CIK${company.cik}.json`;
+    }
+
+    function render() {
+      const ordered = [...companies].sort((a, b) => descending ? b.netMargin - a.netMargin : a.netMargin - b.netMargin);
+      rankingList.replaceChildren();
+      detailBody.replaceChildren();
+
+      ordered.forEach((company, index) => {
+        const item = document.createElement("li");
+        item.className = "ranking";
+        item.setAttribute("aria-label", `${index + 1}. ${company.name}，净利率 ${format(company.netMargin)}%，财年截止 ${company.fiscalYearEnd}`);
+
+        const rank = document.createElement("span");
+        rank.className = "rank-number";
+        rank.textContent = String(index + 1).padStart(2, "0");
+
+        const identity = document.createElement("div");
+        const name = document.createElement("strong");
+        name.className = "company-name";
+        name.textContent = company.name;
+        const fiscalDate = document.createElement("span");
+        fiscalDate.className = "fiscal-date";
+        fiscalDate.textContent = `财年截止 ${company.fiscalYearEnd}`;
+        identity.append(name, fiscalDate);
+
+        const track = document.createElement("div");
+        track.className = "bar-track";
+        track.setAttribute("aria-hidden", "true");
+        const fill = document.createElement("div");
+        fill.className = "bar-fill";
+        fill.style.setProperty("--bar-width", `${company.netMargin / 60 * 100}%`);
+        track.append(fill);
+
+        const value = document.createElement("span");
+        value.className = "margin-value";
+        value.textContent = `${format(company.netMargin)}%`;
+        item.append(rank, identity, track, value);
+        rankingList.append(item);
+
+        const row = document.createElement("tr");
+        const companyCell = document.createElement("td");
+        const link = document.createElement("a");
+        link.className = "table-company";
+        link.href = companySource(company);
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = company.name;
+        link.setAttribute("aria-label", `${company.name}的 SEC company facts JSON（新窗口打开）`);
+        companyCell.append(link);
+
+        const cells = [
+          company.fiscalYearEnd,
+          format(company.revenueUSD / 1e9),
+          `${format(company.growth)}%`,
+          `${format(company.grossMargin)}%`,
+          `${format(company.operatingMargin)}%`,
+          `${format(company.netMargin)}%`
+        ];
+        row.append(companyCell);
+        cells.forEach((cellValue, cellIndex) => {
+          const cell = document.createElement("td");
+          cell.textContent = cellValue;
+          if (cellIndex === cells.length - 1) cell.className = "net-margin";
+          row.append(cell);
+        });
+        detailBody.append(row);
+      });
+
+      const directionText = descending ? "从高到低" : "从低到高";
+      sortLabel.textContent = `净利率：${descending ? "高到低" : "低到高"}`;
+      sortIcon.textContent = descending ? "↓" : "↑";
+      sortButton.setAttribute("aria-label", `当前按净利率${directionText}排序，点击切换为${descending ? "从低到高" : "从高到低"}`);
+      sortStatus.textContent = `已按净利率${directionText}排序，共 ${ordered.length} 家公司。首位为${ordered[0].name}，净利率 ${format(ordered[0].netMargin)}%。`;
+    }
+
+    function showError(message) {
+      rankingList.replaceChildren();
+      detailBody.replaceChildren();
+      const error = document.createElement("p");
+      error.className = "error-state";
+      error.textContent = message;
+      rankingList.before(error);
+      sortButton.disabled = true;
+    }
+
+    sortButton.addEventListener("click", () => {
+      descending = !descending;
+      render();
+    });
+
+    if (!Array.isArray(companies) || companies.length === 0) {
+      showError("没有可显示的公司数据。请检查内嵌数据后重新打开网页。");
+    } else if (companies.some(company => !Number.isFinite(company.netMargin) || !company.fiscalYearEnd)) {
+      showError("部分公司缺少有效净利率或财年截止日，无法生成完整排序。");
+    } else {
+      render();
+    }
+  </script>
+</body>
+</html>
